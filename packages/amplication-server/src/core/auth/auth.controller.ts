@@ -21,6 +21,7 @@ export class AuthController {
   @Get('/github')
   @UseGuards(AuthGuard('github'))
   async github() {
+    console.log('/github');
     return;
   }
 
@@ -29,6 +30,7 @@ export class AuthController {
   @Get('/github/callback')
   @UseGuards(AuthGuard('github'))
   async githubCallback(@Req() request: Request, @Res() response: Response) {
+    console.log('/github/callback');
     const token = await this.authService.prepareToken(request.user as AuthUser);
 
     const host =

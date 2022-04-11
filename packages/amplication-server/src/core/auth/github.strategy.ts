@@ -18,13 +18,17 @@ export class GitHubStrategy extends PassportStrategy(Strategy) {
     refreshToken: string,
     profile: Profile
   ): Promise<AuthUser> {
+    console.log({ accessToken });
+
     const email = await getEmail(accessToken);
+    console.log({ email });
     const user = await this.authService.getAuthUser({
       account: {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         OR: [{ githubId: profile.id }, { email: email }]
       }
     });
+    console.log({ user });
     if (!user) {
       return this.authService.createGitHubUser(profile, email);
     }

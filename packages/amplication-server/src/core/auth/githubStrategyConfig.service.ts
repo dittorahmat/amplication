@@ -24,6 +24,12 @@ export class GitHubStrategyConfigService {
     const clientSecret = await this.getSecret();
     const callbackURL = this.configService.get(GITHUB_REDIRECT_URI_VAR);
     const scope = this.configService.get(GITHUB_SCOPE_VAR);
+    console.log({
+      clientID,
+      clientSecret,
+      callbackURL,
+      scope
+    });
     return {
       clientID,
       clientSecret,
